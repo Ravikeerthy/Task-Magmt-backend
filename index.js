@@ -1,19 +1,22 @@
+dns.setServers(["1.1.1.1", "8.8.8.8"]);
+import dns from "node:dns/promises";
+
 import express from "express"
 import dotenv from "dotenv"
 import dbConnection from "./config/db.js";
 import userRouter from "./routers/user.router.js";
 import cookieParser from "cookie-parser";
-import dns from "node:dns/promises";
 import taskRoutes from "./routers/task.router.js";
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
 
 
 dotenv.config()
 const app = express();
 
+
 const port = process.env.PORT || 3000;
 
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.get( "/", (req, res)=>{
